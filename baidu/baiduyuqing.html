@@ -416,6 +416,7 @@
             return;
         }
         num++;
+        $("section").eq(num).addClass('out').siblings().removeClass('out')
         if(num==$(".section").length){
             num=$(".section").length-1;
             return;
@@ -431,6 +432,7 @@
             return;
         }
         num--;
+        $("section").eq(num).addClass('out').siblings().removeClass('out')
         if(num==-1){
             num=0;
             return;

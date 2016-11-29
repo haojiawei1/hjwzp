@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="touch.js"></script>
+    <script src="zepto.min.js"></script>
+    <style>
+        body {
+            overflow: hidden;
+        }
+        *{
+            padding:0;
+            margin:0;
+            list-style: none;
+        }
+        a{
+            color:#fff;
+            text-decoration: none;
+        }
+        header{
+            width:100%;
+            height:60px;
+            background: #168BD8;
+            position: fixed;
+            top:0;
+            left:0;
+            z-index:1;
+        }
+        .fullpage{
+            width:100%;
+            height:632px;
+            background: red;
+        }
+        section{
+            width:100%;
+            height:100%;
+        }
+        section:nth-child(1){
+            background: rgb(63, 176, 238) url("../touch事件/下载.jpg") repeat center top;
+           }
+        section:nth-child(2){
+            background: url("../touch事件/3bg.jpg");
+        }
+        section:nth-child(3){
+            background: url("../touch事件/2bg.jpg");
+        }
+        section:nth-child(4){
+            background: url("../touch事件/4bg.jpg");
+        }
+        .hbody{
+            width:1000px;
+            height:100%;
+            margin:0 auto;
+            display: flex;
+            /*justify-content:space-around;*/
+            font-family: 微软雅黑;
+
+
+
+        }
+       .hbody .index1{
+           display: flex;
+           margin-left: 50px;
+       }
+       .hbody .last1{
+           display: flex;
+           margin-left: 180px;
+       }
+        .logo{
+            display: block;
+            width: 120px;
+            height: 40px;
+            margin-top: 10px;
+            background:url("header_z_94c6de7.png") -2px 0;
+            background-repeat: no-repeat;
+        }
+        .index1 .index{
+            align-self:center;
+            margin-top:23px;
+            font-size: 15px;
+            margin-left: 50px;
+        }
+        .last1 .last{
+            /*display: inline-block;*/
+            font-size: 12px;
+            font-family: 微软雅黑;
+            margin-top: 40px;
+            margin-left: 20px;
+
+        }
+        .last1 .last:nth-child(1){
+            margin-top:26px;
+            margin-left: 40px;
+        }
+        .last i{
+            display: inline-block;
+            width: 32px;
+            height: 25px;
+            background-repeat: no-repeat;
+            background-position: -88px -154px;
+            background-image: url("header_z_94c6de7.png");
+        }
+        section form{
+            width:340px;
+            height:291px;
+            background:#4EBFFC;
+            border-radius: 3px;
+            padding-top: 26px;
+            position: absolute;
+            right:180px;
+            top: 120px;
+        }
+        .form{
+            width:300px;
+            height:179px;
+            padding:0 20px;
+        }
+        .username{
+            box-sizing: border-box;
+            border: 1px solid #bdc7d3;
+            width: 299px;
+            height: 40px;
+            background: #fff;
+        }
+        .form p{
+            height: 20px;
+            line-height: 20px;
+            vertical-align: top;
+            color: #f28281;
+            visibility: hidden;
+            font-size: 13px;
+            max-width: 270px;
+            white-space: nowrap;
+            word-wrap: normal;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: inline-block;
+            display: block;
+            margin: 0;
+            text-align: left;
+        }
+        .username input{
+            width:252px;
+            border: 0;
+            outline: none;
+            padding: 9px;
+            height: 20px;
+            box-shadow: none;
+        }
+        .username span{
+            background: url(icons.png) no-repeat;
+            width: 14px;
+            height: 14px;
+            margin: 12px 3px 0 10px;
+            float: left;
+            background-position: -124px -12px;
+        }
+        .pass{
+            box-sizing: border-box;
+            border: 1px solid #bdc7d3;
+            width: 299px;
+            height: 40px;
+            background: #fff;
+
+        }
+        .pass input{
+            width:252px;
+            border: 0;
+            outline: none;
+            padding: 9px;
+            height: 20px;
+            box-shadow: none;
+        }
+        .pass span{
+            background: url(icons.png) no-repeat;
+            width: 14px;
+            height: 14px;
+            margin: 12px 3px 0 10px;
+            float: left;
+            background-position: -140px -12px
+        }
+        .token{
+            box-sizing: border-box;
+            border: 1px solid #bdc7d3;
+            width: 299px;
+            height: 40px;
+            border: 0;
+        }
+        .token input{
+
+            outline: none;
+            border: 1px solid #bdc7d3;
+            padding: 9px;
+            width: 90px;
+            height: 20px;
+            background: #fff;
+        }
+        .action{
+            padding:0 20px;
+            width:300px;
+            height:86px;
+            /*background: #000;*/
+        }
+        .action input{
+            border: 0;
+            background: #ffd850;
+            color: #5c4c12;
+            border-radius: 2px;
+            width: 299px;
+            font-size: 15px;
+            line-height: 35px;
+            margin-top: 12px;
+            font-family: 微软雅黑;
+        }
+        .other{
+            margin: 16px 0 8px;
+            font-size: 12px;
+            /*color: #9dbcdb;*/
+        }
+        .other .ol{
+            /*width:auto;*/
+            float: left;
+        }
+        .other .ol span{
+            background: url(icons.png) no-repeat;
+            display: inline-block;
+            width: 15px;
+            height: 17px;
+            margin-right: 5px;
+            float: left;
+            background-position: -203px -75px;
+            /*vertical-align: top;*/
+        }
+        .other .or{
+            float: right;
+        }
+        .btn{
+            width:28px;
+            height:73px;
+            position: fixed;
+            top:0;
+            bottom:0;
+            right:20px;
+            margin:auto;
+        }
+        .btn li{
+            width:12px;
+            height:12px;
+            border:1px solid #000;
+            border-radius: 50%;
+            margin-top:5px;
+        }
+        .btn .active{
+            background: #000;
+        }
+        .baidu{
+            width: 501px;
+            height: 158px;
+            background: url(launch_deea86c.png);
+            position: absolute;
+            left: 180px;
+            top: 100px;
+            z-index: 2;
+        }
+        .chuang{
+            width: 242px;
+            height: 228px;
+            background: url(ship_1ad6734.png);
+            position: absolute;
+            left: 200px;
+            top: 350px;
+            transition:all 5s ease;
+        }
+        section.out .chuang{
+            left:280px;
+        }
+        .foot{
+            width:100%;
+            height:126px;
+            position: absolute;
+            bottom:0;
+            left:0;
+            background: #0d71cd url(bg-1_e29bcfa.jpg);
+            opacity: 0.7;
+            z-index: 3;
+        }
+        .sanjiao{
+            width: 265px;
+            height: 175px;
+            background: url(hill_1_0d79217.png);
+            position: absolute;
+            left:0px;
+            bottom:0px;
+        }
+        .shu{
+            width: 444px;
+            height: 427px;
+            background: url(brain_36a156f.png);
+            position: absolute;
+            right: 40px;
+            top: 100px;
+            transition:all 4s ease;
+            /*opacity: 0;*/
+        }
+        section.out .shu{
+            right:100px;
+        }
+        .hua{
+            width: 444px;
+            height: 330px;
+            background: url(allside_e8abd12.png);
+            position: absolute;
+            right: 40px;
+            top: 120px;
+            transition:all 4s ease;
+        }
+        section.out .hua{
+            right:100px;
+        }
+        .shuju{
+            width: 603px;
+            height: 361px;
+            background: url(stat_8934528.png);
+            position: absolute;
+            right: 50px;
+            top: 160px;
+            transition:all 4s ease;
+ 
+        }
+        section.out .shuju{
+            right:180px;
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+<header>
+    <div class="hbody">
+        <a href="" class="logo"></a>
+        <div class="index1">
+        <a href="" class="index">首页</a>
+        <a href="" class="index">产品介绍</a>
+        <a href="" class="index">用户版</a>
+        </div>
+        <div class="last1">
+        <!--<a href="" class="last">登录</a>-->
+        <a href="" class="last">手机客户端
+                    <i></i>
+        </a>
+        <a href="" class="last">百度司南</a>
+        <a href="" class="last">联系我们</a>
+        <a href="" class="last" style="color:#FFDA28">申请使用</a>
+        </div>
+    </div>
+</header>
+<div class="fullpage">
+    <section style="position:relative" class="out">
+        <div class="baidu"></div>
+        <div class="chuang"></div>
+        <div class="foot"></div>
+        <div class="sanjiao"></div>
+        <form action="">
+            <div class="form">
+                <div class="username">
+                    <span></span>
+                    <input type="text" autocomplete="off" placeholder="用户名" tabindex="1" maxlength="100">
+                </div>
+                <p></p>
+                <div class="pass">
+                    <span></span>
+                    <input type="text" autocomplete="off" placeholder="密码" tabindex="1" maxlength="100">
+                </div>
+                <p></p>
+                <div class="token">
+                    <input type="text" autocomplete="off" placeholder="验证码" tabindex="1" maxlength="100">
+                </div>
+            </div>
+            <div class="action">
+                <input type="submit" value="登录">
+                <div class="other">
+                    <div class="ol">
+                        <span></span><a href="">安全控件常见问题</a></div>
+                    <div class="or"><a href="">忘记密码</a></div>
+                </div>
+            </div>
+        </form>
+    </section>
+    <section style="position:relative">
+        <div class="shu"></div>
+    </section>
+    <section style="position:relative">
+        <div class="hua"></div>
+    </section>
+    <section style="position:relative">
+        <div class="shuju"></div>
+    </section>
+</div>
+<ul class="btn">
+    <li class="active"></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+</body>
+<script>
+    var hei=$(window).height();
+    var num=0;
+    var flag=true;
+
+    touch.on("body","swipeup",".fullpage",function(){
+        if(!flag){
+            return;
+        }
+        num++;
+        if(num==$(".section").length){
+            num=$(".section").length-1;
+            return;
+        }
+        flag=false;
+        $(".fullpage").css({
+            marginTop:-num*hei,
+            transition:"margin-top 1s ease"
+        });
+    })
+    touch.on("body","swipedown",".fullpage",function(){
+        if(!flag){
+            return;
+        }
+        num--;
+        if(num==-1){
+            num=0;
+            return;
+        }
+        flag=false;
+        $(".fullpage").css({
+            marginTop:-num*hei,
+            transition:"margin-top 1s ease"
+        });
+
+    })
+    $(".fullpage")[0].addEventListener("webkitTransitionEnd",function(){
+        flag=true;
+    });
+
+    $(".btn li").click(function(){
+        var index=$(this).index();
+        $(this).addClass('active').siblings().removeClass('active');
+        $(".fullpage").css({marginTop:-index*hei,transition:"margin-top 1s ease"})
+        $("section").eq(index).addClass('out').siblings().removeClass('out')
+    })
+</script>
+</html>

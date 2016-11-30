@@ -923,12 +923,14 @@
             return;
         }
         num--;
-        $(".btn li").eq(num).addClass('active').siblings().removeClass('active');
-        $("section").eq(num).addClass('out').siblings().removeClass('out')
+
+
         if(num==-1){
             num=0;
             return;
         }
+        $(".btn li").eq(num).addClass('active').siblings().removeClass('active');
+        $("section").eq(num).addClass('out').siblings().removeClass('out')
         flag=false;
         $(".fullpage").css({
             marginTop:-num*hei,
@@ -940,17 +942,35 @@
         flag=true;
     });
 
-    $(".btn li").click(function(){
-
-       num++;
-        if(num==$("section").length){
-            num=$("section").length-1
+//    $(".btn li").click(function(){
+//
+//        var index=$(this).index();
+//
+//        $(this).addClass('active').siblings().removeClass('active');
+//        $(".fullpage").css({marginTop:-index*hei,transition:"margin-top 1s ease"})
+//        $("section").eq(index).addClass('out').siblings().removeClass('out')
+//    })
+    $(".btn li").click(function () {
+        var index=$(this).index();
+        $("section").eq(index).addClass('out').siblings().removeClass('out')
+        if(index>num){
+            num++;
+            if(num==$("section").length){
+                num=$("section").length-1;
+            }
+            $(".fullpage").css({marginTop:-index*hei,transition:"margin-top 1s ease"})
+            $(this).addClass('active').siblings().removeClass('active');
+        }else if(index<num){
+            num--;
+            if(num==-1){
+                num=0;
+            }
+            $(".fullpage").css({marginTop:-index*hei,transition:"margin-top 1s ease"})
+            $(this).addClass('active').siblings().removeClass('active');
         }
 
-        $(this).addClass('active').siblings().removeClass('active');
-        $(".fullpage").css({marginTop:-num*hei,transition:"margin-top 1s ease"})
-        $("section").eq(num).addClass('out').siblings().removeClass('out')
     })
+
     var flag1=true;
     $(".heng").click(function(){
         if(flag1){
@@ -1000,7 +1020,7 @@
                 opacity:0,
                 transform:"rotate(90deg)"
             })
-            flag1=true;
+           ;
             $(".heng .heng1").css({
                 transformOrigin:"center",
                 transform:"translate(0,0px) rotate(0deg)"
@@ -1010,6 +1030,7 @@
                 transform:"translate(0,0px) rotate(0deg)"
             })
         }
+        flag1=true
     })
 </script>
 </html>
